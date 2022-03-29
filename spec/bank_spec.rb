@@ -26,5 +26,12 @@ describe 'withdraw' do
     bank = Bank.new
     bank.deposit(200)
     bank.withdraw(100)
+    expect(bank.balance).to eq 100
+  end
+
+  it "will raise error if not enough funds" do
+    bank = Bank.new
+    bank.deposit(200)
+    expect { bank.withdraw(500)}. to raise_error('not enough funds')
   end
 end

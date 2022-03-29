@@ -6,12 +6,14 @@ class Bank
     @balance = 0
   end
 
-  def deposit(amount)
-    @balance += amount
+  def withdraw(amount)
+    raise 'not enough funds' if @balance < amount
+    @balance -= amount
   end
 
-  def withdraw(amount)
-    @balance -= amount
+  def deposit(amount)
+    
+    @balance += amount
   end
 
 end
