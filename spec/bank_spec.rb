@@ -12,3 +12,11 @@ describe 'balance' do
     expect(bank.balance).to eq 0
   end
 end
+
+describe 'deposit' do
+  it 'Balance increases by deposit amount' do
+    bank = Bank.new
+    bank.deposit(500)
+    expect(bank.balance).to eq 500
+  end
+end
