@@ -20,3 +20,11 @@ describe 'deposit' do
     expect(bank.balance).to eq 500
   end
 end
+
+describe 'withdraw' do
+  it "Balance decreases by withdrawal amount" do
+    bank = Bank.new
+    bank.deposit(200)
+    bank.withdraw(100)
+  end
+end
