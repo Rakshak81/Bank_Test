@@ -1,3 +1,6 @@
+require './lib/transaction'
+require './lib/statement'
+
 class Bank
 
   attr_reader :balance, :transactions
@@ -11,12 +14,12 @@ class Bank
   def withdraw(date, amount)
     raise 'not enough funds' if @balance < amount
     @balance -= amount
-    @transactions << [date, " ", amount, @balance]
+    @transactions << Transaction.new(date, '', amount, @balance)
   end
 
   def deposit(date, amount)
     @balance += amount
-    @transactions << [date, amount, " ",  @balance]
+    @transactions << Transaction.new(date, amount, '', @balance)
   end
 
 end
