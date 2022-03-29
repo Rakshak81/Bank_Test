@@ -16,7 +16,7 @@ end
 describe 'deposit' do
   it 'Balance increases by deposit amount' do
     bank = Bank.new
-    bank.deposit(500)
+    bank.deposit("11/12/2020", 500)
     expect(bank.balance).to eq 500
   end
 end
@@ -24,14 +24,23 @@ end
 describe 'withdraw' do
   it "Balance decreases by withdrawal amount" do
     bank = Bank.new
-    bank.deposit(200)
-    bank.withdraw(100)
-    expect(bank.balance).to eq 100
+    bank.deposit("11/12/2020", 500)
+    bank.withdraw("12/12/2020", 100)
+    expect(bank.balance).to eq 400
   end
 
   it "will raise error if not enough funds" do
     bank = Bank.new
-    bank.deposit(200)
-    expect { bank.withdraw(500)}. to raise_error('not enough funds')
+    bank.deposit("11/12/2020", 500)
+    expect { bank.withdraw("12/12/2020", 600)}. to raise_error('not enough funds')
+  end
+end
+
+describe 'transactions' do
+  it "shows no if transactions" do
+    bank = Bank.new
+    bank.deposit("11/12/2020", 500)
+    bank.withdraw("12/12/2020", 100)
+    expect(bank.transactions.length).to eq(2)
   end
 end
