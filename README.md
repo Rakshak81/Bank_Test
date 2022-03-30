@@ -28,3 +28,34 @@ date || credit || debit || balance
 
 Feature Test:
 
+3.0.0 :001 > require './lib/bank'
+ => true 
+ => false 
+3.0.0 :003 > account = Bank.new
+ => #<Bank:0x0000000138130c70 @balance=0, @transactions=[]> 
+ => [#<Transaction:0x00000001379668f0 @date="11/12/2022", @credit=500, @debit="", @acc_balance=500>] 
+3.0.0 :005 > account.withdraw("20/04/2022", 400)
+ => [#<Transaction:0x00000001379668f0 @date="11/12/2022", @credit=500, @debit="", @acc_balance=500>, #<Transaction:0x0000000105016340 @date="20/04/2022", @credit="", @debit=400, @acc_balance=100>] 
+3.0.0 :006 > Statement.print(account.transactions)
+date || credit || debit || balance
+
+ 20/04/2022||  || 400 || 100
+
+ 11/12/2022|| 500 ||  || 500
+ 
+ => [#<Transaction:0x00000001379668f0 @date="11/12/2022", @credit=500, @debit="", @acc_balance=500>, #<Transaction:0x0000000105016340 @date="20/04/2022", @credit="", @debit=400, @acc_balance=100>] 
+3.0.0 :007 > account.deposit('11/12/2022', 500)
+ => [#<Transaction:0x00000001379668f0 @date="11/12/2022", @credit=500, @debit="", @acc_balance=500>, #<Transaction:0x0000000105016340 @date="20/04/2022", @credit="", @debit=400, @acc_balance=100>, #<Transaction:0x00000001381496d0 @date="11/12/2022", @credit=500, @debit="", @acc_balance=600>] 
+3.0.0 :008 > account.withdraw("20/04/2022", 400)
+ => [#<Transaction:0x00000001379668f0 @date="11/12/2022", @credit=500, @debit="", @acc_balance=500>, #<Transaction:0x0000000105016340 @date="20/04/2022", @credit="", @debit=400, @acc_balance=100>, #<Transaction:0x00000001381496d0 @date="11/12/2022", @credit=500, @debit="", @acc_balance=600>, #<Transaction:0x00000001380b5200 @date="20/04/2022", @credit="", @debit=400, @acc_balance=200>] 
+3.0.0 :009 > Statement.print(account.transactions)
+
+date || credit || debit || balance
+
+ 20/04/2022||  || 400 || 200
+
+ 11/12/2022|| 500 ||  || 600
+
+ 20/04/2022||  || 400 || 100
+
+ 11/12/2022|| 500 ||  || 500
